@@ -1,14 +1,16 @@
+
 body {
     background-color: #ffd3db;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* Para evitar scroll */
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
+
 
 header {
     display: flex;
@@ -17,6 +19,8 @@ header {
     height: 2cm;
     box-shadow: 0 4px 2px -2px gray;
     padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 header img {
@@ -46,6 +50,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 
 .login-container {

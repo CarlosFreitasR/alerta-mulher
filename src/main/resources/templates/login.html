@@ -6,13 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/Login.css}">
 </head>
 <body>
-    <div th:fragment="main">
+<!--<header th:replace="~{main}"></header>-->
         <div class="login-container">
             <h2>Login</h2>
             <form th:action="@{/login}" th:object="${login}" method="post">
                 <div class="input-group">
                     <label>
-                        <input type="email" th:field="*{cpf}" placeholder="E-mail" required>
+                        <input type="text" th:field="*{cpf}" placeholder="CPF" required>
                     </label>
                 </div>
                 <div class="input-group">
@@ -22,11 +22,14 @@
                 </div>
                 <div class="links">
                     <a href="#">Esqueci Senha</a>
-                    <a th:href="@{/cadastro}">Fazer Cadastro</a>
+                    <a th:href="@{/usuario}">Fazer Cadastro</a>
                 </div>
                 <button type="submit" class="login-button">Logar</button>
+                <div th:if="${erro != null}">
+                    <span th:text="${erro}"></span>
+                </div>
             </form>
+
         </div>
-    </div>
 </body>
 </html>

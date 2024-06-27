@@ -7,13 +7,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/usuario")
 @AllArgsConstructor(onConstructor_ = @__(@Autowired))
 public class UsuarioController {
     private final UsuarioService service;
@@ -24,10 +23,9 @@ public class UsuarioController {
         return ResponseEntity.ok().body(usuarioDto);
     }
 
-    @GetMapping("/home/{pk}")
-    public String mostrarUsuarios(@PathVariable Long pk) {
-        UsuarioDto usuarioDto = new UsuarioDto();
-        usuarioDto.setNomeUsuario("teste");
-        return "/inicio";
+    @GetMapping
+    public String iniciarCadastro(Model model) {
+        model.addAttribute("content", "cadastro");
+        return "main";
     }
 }
