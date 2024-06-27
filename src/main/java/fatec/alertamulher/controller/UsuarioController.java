@@ -28,6 +28,6 @@ public class UsuarioController {
     public String mostrarUsuarios(@PathVariable Long pk) {
         UsuarioDto usuarioDto = new UsuarioDto();
         usuarioDto.setNomeUsuario("teste");
-        return "/home";
+        return "/inicio";
     }
 }
