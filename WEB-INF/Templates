@@ -1,0 +1,4 @@
+templateResolver.setPrefix("/WEB-INF/templates/");
+    templateResolver.setSuffix(".html");
+
+    
