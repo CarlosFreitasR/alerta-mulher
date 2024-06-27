@@ -22,14 +22,24 @@ public class AccessoController {
     @PostMapping
     public String login(@Validated Login login, Model model) {
         String code = service.login(login);
-        model.addAttribute("code", code);
-        return "login";
+        if (code == null) {
+            model.addAttribute("erro", "Usuario nao encontrado");
+        } else {
+            model.addAttribute("code", code);
+        }
+        model.addAttribute("content", "login");
+        return "main";
     }
 
     @GetMapping
     public String login(Model model) {
         model.addAttribute("login", new Login());
-        model.addAttribute("content", "main");
-        return "login";
+        model.addAttribute("content", "login");
+        return "main";
+    }
+
+    @GetMapping("/cadastro")
+    public String iniciarCadastro(){
+        return "usuario";
     }
 }
