@@ -12,7 +12,7 @@
             <form th:action="@{/login}" th:object="${login}" method="post">
                 <div class="input-group">
                     <label>
-                        <input type="email" th:field="*{cpf}" placeholder="E-mail" required>
+                        <input type="text" th:field="*{cpf}" placeholder="CPF" required>
                     </label>
                 </div>
                 <div class="input-group">

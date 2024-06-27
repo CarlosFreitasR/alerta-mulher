@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class Login {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pl_login")
+    @Column(name = "pk_login")
     private Long pkLogin;
 
     @CPF

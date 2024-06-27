@@ -29,7 +29,7 @@ public class AccessoController {
     @GetMapping
     public String login(Model model) {
         model.addAttribute("login", new Login());
-//        model.addAttribute("content", "login");
+        model.addAttribute("content", "main");
         return "login";
     }
 }
