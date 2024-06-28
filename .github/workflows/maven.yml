@@ -1,11 +1,3 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 name: Java CI with Maven
 
 on:
@@ -16,7 +8,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -30,7 +21,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
-     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
       run: |
         curl -X POST https://api.github.com/repos/${{ github.repository }}/dependency-graph/snapshots \
@@ -42,3 +33,24 @@ jobs:
           "ref": "${{ github.ref }}"
         }
         EOF
+
+    # Create a tag for the release
+    - name: Create Release Tag
+      id: create_tag
+      run: |
+        TAG_NAME="v1.0.${{ github.run_number }}"
+        git tag $TAG_NAME
+        git push origin $TAG_NAME
+
+    # Create GitHub Release
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+        release_name: "Release $TAG_NAME"
+        body: "Release notes for $TAG_NAME"
+        draft: false
+        prerelease: false
