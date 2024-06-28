@@ -1,0 +1,56 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
+    - name: Update dependency graph
+      run: |
+        curl -X POST https://api.github.com/repos/${{ github.repository }}/dependency-graph/snapshots \
+        -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+        -d @- <<EOF
+        {
+          "job": "build",
+          "sha": "${{ github.sha }}",
+          "ref": "${{ github.ref }}"
+        }
+        EOF
+
+    # Create a tag for the release
+    - name: Create Release Tag
+      id: create_tag
+      run: |
+        TAG_NAME="v1.0.${{ github.run_number }}"
+        git tag $TAG_NAME
+        git push origin $TAG_NAME
+
+    # Create GitHub Release
+    - name: Create GitHub Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.create_tag.outputs.TAG_NAME }}
+        release_name: "Release $TAG_NAME"
+        body: "Release notes for $TAG_NAME"
+        draft: false
+        prerelease: false
