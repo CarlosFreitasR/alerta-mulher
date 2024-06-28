@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title th:text="${title}">Login</title>
-    <link rel="stylesheet" th:href="@{/css/Login.css}">
+     
+    <!-- Link CSS -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
 </head>
 <body>
-<!--<header th:replace="~{main}"></header>-->
-        <div class="login-container">
-            <h2>Login</h2>
-            <form th:action="@{/login}" th:object="${login}" method="post">
+    <div id="container">
+
+        <main>
+            <div class="login-container">
+                <h2>Login</h2>
                 <div class="input-group">
-                    <label>
-                        <input type="text" th:field="*{cpf}" placeholder="CPF" required>
-                    </label>
+                    <input type="email" placeholder="E-mail" required>
                 </div>
                 <div class="input-group">
-                    <label>
-                        <input type="password" th:field="*{senha}" placeholder="Senha" required>
-                    </label>
+                    <input type="password" placeholder="Senha" required>
                 </div>
                 <div class="links">
                     <a href="#">Esqueci Senha</a>
                     <a th:href="@{/usuario}">Fazer Cadastro</a>
                 </div>
-                <button type="submit" class="login-button">Logar</button>
-                <div th:if="${erro != null}">
-                    <span th:text="${erro}"></span>
-                </div>
-            </form>
-
-        </div>
+                <button class="login-button">Logar</button>
+            </div>
+        </main>
+    </div>
 </body>
 </html>
