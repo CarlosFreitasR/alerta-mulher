@@ -1,13 +1,11 @@
-body {
-    background-color: #ffd3db;
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    overflow: hidden; /* Para evitar scroll */
+    font-family: Arial, sans-serif;
+    background-color: #ffd3db;
     display: flex;
-    flex-direction: column; /* Define o layout da página em coluna */
-    justify-content: center; /* Centraliza verticalmente todo o conteúdo */
-    align-items: center; /* Centraliza horizontalmente todo o conteúdo */
+    justify-content: center;
+    align-items: center;
     height: 100vh;
 }
 
@@ -18,7 +16,6 @@ header {
     height: 2cm;
     box-shadow: 0 4px 2px -2px gray;
     padding: 0 20px;
-    width: 100%; /* Garante que o cabeçalho ocupe toda a largura */
 }
 
 header img {
