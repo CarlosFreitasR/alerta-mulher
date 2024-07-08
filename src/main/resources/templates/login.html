@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title th:text="${title}">Login</title>
-    <link rel="stylesheet" th:href="@{/css/Login.css}">
+     
+    <!-- Link CSS -->
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
 </head>
+<main>
 <body>
 <!--<header th:replace="~{main}"></header>-->
         <div class="login-container">
@@ -32,4 +38,5 @@
 
         </div>
 </body>
+</main>
 </html>

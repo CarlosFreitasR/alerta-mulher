@@ -1,9 +1,8 @@
-body {
-    background-color: #ffd3db;
-    font-family: Arial, sans-serif;
+html, body {
+    height: 100%;
     margin: 0;
-    padding: 0;
-    overflow: hidden; /* Para evitar scroll */
+    font-family: Arial, sans-serif;
+    background-color: #ffd3db;
     display: flex;
     justify-content: center;
     align-items: center;
