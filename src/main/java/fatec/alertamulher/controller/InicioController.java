@@ -11,7 +11,7 @@ public class InicioController {
 
     @GetMapping
     public String inicio(Model model) {
-      //  model.addAttribute("content", "inicio");
-        return "inicio";
+        model.addAttribute("content", "inicio");
+        return "main";
     }
 }

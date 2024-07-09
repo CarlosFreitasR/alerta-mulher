@@ -73,46 +73,30 @@
 <body>
     <div class="cadastro-container">
         <h2>Cadastro</h2>
-        <form id="cadastro-form" th:action="@{/cadastrar}" method="post">
+        <form id="cadastro-form" th:action="@{/usuario}" th:object="${usuarioForm}" method="post">
             <div class="section">
                 <h3>Dados Pessoais</h3>
                 <div class="input-group">
-                    <input type="email" id="email" name="Email" placeholder="Email" required>
+                    <input type="email" th:field="*{emailUsuario}" placeholder="Email" required>
                     <span class="invalid-feedback" id="email-error" role="alert">
                         <strong></strong>
                     </span>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="cpf" name="cpf" placeholder="CPF" required>
+                    <input type="text" th:field="*{cpfUsuario}" placeholder="CPF" required>
                     <span class="invalid-feedback" id="cpf-error" role="alert">
                         <strong></strong>
                     </span>
                 </div>
                 <div class="input-group">
-                    <input type="text" id="nome" name="nome" placeholder="Nome" required>
+                    <input type="text" th:field="*{nomeUsuario}" placeholder="Nome" required>
                 </div>
                 <div class="input-group">
-                    <input type="date" id="data_nascimento" name="data_nascimento" placeholder="Data de nascimento" required>
-                    <span class="invalid-feedback" id="data_nascimento-error" role="alert">
-                        <strong></strong>
-                    </span>
+                    <input type="password" th:field="*{senhaUsuario}" placeholder="Senha" required>
                 </div>
                 <div class="input-group">
-                    <input type="tel" id="telefone" name="telefone" placeholder="Telefone" required>
+                    <input type="tel" th:field="*{telefoneUsuario}" placeholder="Telefone" required>
                 </div>
-            </div>
-            <div class="section">
-                <h3>Contatos de Emergência</h3>
-                <div class="input-group">
-                    <input type="tel" id="contato1" name="contato1" placeholder="Contato 1" required>
-                </div>
-                <!-- Comentários Thymeleaf -->
-                <!--<div class="input-group">-->
-                <!--    <input type="tel" id="contato2" name="contato2" placeholder="Contato 2">-->
-                <!--</div>-->
-                <!--<div class="input-group">-->
-                <!--    <input type="tel" id="contato3" name="contato3" placeholder="Contato 3">-->
-                <!--</div>-->
             </div>
             <button class="cadastro-button" type="submit">Cadastrar</button>
         </form>
